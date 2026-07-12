@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" role="img" aria-label="4all.tools logo icon">
+  <rect width="28" height="28" rx="8" fill="#0F172B"/>
+  <rect x="5" y="5" width="7.5" height="7.5" rx="1.5" fill="#fff" opacity=".95"/>
+  <rect x="14.5" y="5" width="7.5" height="7.5" rx="1.5" fill="#fff" opacity=".95"/>
+  <rect x="5" y="14.5" width="7.5" height="7.5" rx="1.5" fill="#fff" opacity=".95"/>
+  <rect x="14.5" y="14.5" width="7.5" height="7.5" rx="1.5" fill="#51a2ff" opacity=".95"/>
+</svg>
