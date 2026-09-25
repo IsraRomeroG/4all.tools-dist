@@ -1,25 +1,259 @@
-<!DOCTYPE html><html lang="pt" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>O que é JSON? Sintaxe, exemplos e usos</title><meta name="description" content="Entenda o que é JSON, conheça sua sintaxe básica e veja exemplos comuns de troca de dados entre aplicações."><meta name="robots" content="index,follow"><link rel="canonical" href="https://4all.tools/pt/blog/desenvolvimento/guias-json/o-que-e-json/"><link rel="alternate" hreflang="en" href="https://4all.tools/blog/development/json-guides/what-is-json/"><link rel="alternate" hreflang="es" href="https://4all.tools/es/blog/desarrollo/guias-json/que-es-json/"><link rel="alternate" hreflang="pt" href="https://4all.tools/pt/blog/desenvolvimento/guias-json/o-que-e-json/"><link rel="alternate" hreflang="fr" href="https://4all.tools/fr/blog/developpement/guides-json/qu-est-ce-que-json/"><link rel="alternate" hreflang="x-default" href="https://4all.tools/blog/development/json-guides/what-is-json/"><meta property="og:title" content="O que é JSON? Sintaxe, exemplos e usos"><meta property="og:description" content="Entenda o que é JSON, conheça sua sintaxe básica e veja exemplos comuns de troca de dados entre aplicações."><meta property="og:type" content="article"><meta property="og:url" content="https://4all.tools/pt/blog/desenvolvimento/guias-json/o-que-e-json/"><meta property="og:site_name" content="4all.tools"><meta property="article:published_time" content="2026-07-21T00:00:00.000Z"><meta property="article:section" content="Guias de JSON"><link rel="stylesheet" href="/_astro/composers.DwigaJCt.css"></head><body class="bg-white text-slate-950 antialiased"><a href="#main-content" data-skip-to-content class="sr-only fixed left-4 top-4 z-50 rounded bg-slate-950 px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:outline-2 focus:outline-offset-2 focus:outline-slate-950">Saltar para o conteúdo</a><header class="border-b border-slate-200 bg-white" data-site-header><div class="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-3 sm:px-6 lg:px-8"><a class="inline-flex items-center gap-2.5 font-[Inter,ui-sans-serif,system-ui,sans-serif] text-xl leading-[1.6] font-extrabold tracking-[-0.7px] no-underline antialiased focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-blue-600/35 text-slate-900" href="/pt/" aria-label="4all.tools — Início" data-site-brand="true" data-site-logo="true"><span class="grid size-7 grid-cols-2 gap-0.5 rounded-lg p-[5px] bg-slate-900 shadow-[0_5px_14px_#2563eb40]" aria-hidden="true"><span class="rounded-[1.5px] opacity-95 bg-white"></span><span class="rounded-[1.5px] opacity-95 bg-white"></span><span class="rounded-[1.5px] opacity-95 bg-white"></span><span class="rounded-[1.5px] opacity-95 bg-blue-400"></span></span><span>4all<span class="text-blue-400">.tools</span></span></a><nav class="flex items-center" aria-label="Navegação principal" data-site-primary-navigation><ul class="flex flex-wrap items-center gap-4 text-sm"><li><a class="text-slate-700 underline decoration-transparent underline-offset-4 hover:text-slate-950 hover:decoration-slate-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700 font-semibold text-slate-950" href="/pt/blog/" data-site-header-link="blog" data-active="true">Blog</a></li></ul></nav><nav class="w-full min-w-0 sm:ml-auto sm:w-auto" aria-label="Idiomas" data-language-switcher><ul class="flex max-w-full flex-wrap items-center gap-x-4 gap-y-2 text-sm"><li data-locale="en" data-state="available"><a class="text-slate-700 underline decoration-transparent underline-offset-4 hover:text-slate-950 hover:decoration-slate-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/blog/development/json-guides/what-is-json/" hreflang="en" lang="en">English</a></li><li data-locale="es" data-state="available"><a class="text-slate-700 underline decoration-transparent underline-offset-4 hover:text-slate-950 hover:decoration-slate-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/es/blog/desarrollo/guias-json/que-es-json/" hreflang="es" lang="es">Español</a></li><li data-locale="pt" data-state="current"><span class="font-semibold text-slate-950" aria-current="page" lang="pt">Português<span class="sr-only"> (Idioma atual)</span></span></li><li data-locale="fr" data-state="available"><a class="text-slate-700 underline decoration-transparent underline-offset-4 hover:text-slate-950 hover:decoration-slate-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/fr/blog/developpement/guides-json/qu-est-ce-que-json/" hreflang="fr" lang="fr">Français</a></li></ul></nav></div></header><main id="main-content" class="min-h-screen bg-white" tabindex="-1"><article class="mx-auto grid w-full max-w-3xl gap-8 px-4 py-8 sm:px-6 lg:px-8" data-layout-region="article"><header class="grid gap-4" data-layout-region="article-header"><div class="mb-2"><nav aria-label="Caminho de navegação" data-breadcrumbs><ol class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-600"><li class="inline-flex items-center gap-x-2" data-kind="home" data-state="link"><a class="inline-flex min-h-6 items-center underline decoration-slate-300 underline-offset-4 hover:text-slate-950 hover:decoration-slate-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/pt/">Início</a><span aria-hidden="true">/</span></li><li class="inline-flex items-center gap-x-2" data-kind="taxonomy" data-state="link"><a class="inline-flex min-h-6 items-center underline decoration-slate-300 underline-offset-4 hover:text-slate-950 hover:decoration-slate-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/pt/blog/">Blog</a><span aria-hidden="true">/</span></li><li class="inline-flex items-center gap-x-2" data-kind="taxonomy" data-state="link"><a class="inline-flex min-h-6 items-center underline decoration-slate-300 underline-offset-4 hover:text-slate-950 hover:decoration-slate-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/pt/blog/desenvolvimento/">Desenvolvimento</a><span aria-hidden="true">/</span></li><li class="inline-flex items-center gap-x-2" data-kind="taxonomy" data-state="link"><a class="inline-flex min-h-6 items-center underline decoration-slate-300 underline-offset-4 hover:text-slate-950 hover:decoration-slate-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/pt/blog/desenvolvimento/guias-json/">Guias de JSON</a><span aria-hidden="true">/</span></li><li class="inline-flex items-center gap-x-2" data-kind="entity" data-state="current"><span class="font-medium text-slate-950" aria-current="page">O que é JSON? Guia prático da sintaxe JSON</span></li></ol></nav></div><h1 class="text-3xl font-semibold tracking-normal text-slate-950" data-template-identity="what-is-json">O que é JSON? Guia prático da sintaxe JSON</h1><p class="text-lg leading-8 text-slate-700">Entenda o que é JSON, como sua sintaxe funciona e por que ele é usado para trocar dados estruturados.</p></header><div class="grid gap-3 text-sm text-slate-600" data-layout-region="article-metadata"><div class="grid gap-2" data-template-region="article-metadata"><div><span>Publicado: </span><time datetime="2026-07-21T00:00:00.000Z">21 de julho de 2026</time></div><div><span>Categorias: </span><a href="/pt/blog/desenvolvimento/guias-json/">Guias de JSON</a></div></div></div><div class="grid gap-6" data-layout-region="article-body"><div class="grid gap-6" data-template-region="article-content"><div class="editorial-content"><p>JSON é um formato de texto usado para trocar dados estruturados. Um objeto
-reúne valores nomeados, enquanto um array mantém uma lista em ordem.</p>
-<h2 id="valores-e-estrutura">Valores e estrutura</h2>
-<p>JSON aceita strings, números, valores booleanos, <code>null</code>, objetos e arrays. Este
-é um exemplo válido:</p>
+<!DOCTYPE html><html lang="pt" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>O que é JSON? Sintaxe, exemplos e usos</title><meta name="description" content="Entenda o que é JSON, conheça sua sintaxe básica e veja exemplos comuns de troca de dados entre aplicações."><meta name="robots" content="index,follow"><link rel="canonical" href="https://4all.tools/pt/blog/desenvolvimento/guias-json/o-que-e-json/"><link rel="alternate" hreflang="en" href="https://4all.tools/blog/development/json-guides/what-is-json/"><link rel="alternate" hreflang="es" href="https://4all.tools/es/blog/desarrollo/guias-json/que-es-json/"><link rel="alternate" hreflang="pt" href="https://4all.tools/pt/blog/desenvolvimento/guias-json/o-que-e-json/"><link rel="alternate" hreflang="fr" href="https://4all.tools/fr/blog/developpement/guides-json/qu-est-ce-que-json/"><link rel="alternate" hreflang="x-default" href="https://4all.tools/blog/development/json-guides/what-is-json/"><meta property="og:title" content="O que é JSON? Sintaxe, exemplos e usos"><meta property="og:description" content="Entenda o que é JSON, conheça sua sintaxe básica e veja exemplos comuns de troca de dados entre aplicações."><meta property="og:type" content="article"><meta property="og:url" content="https://4all.tools/pt/blog/desenvolvimento/guias-json/o-que-e-json/"><meta property="og:site_name" content="4all.tools"><meta property="article:published_time" content="2026-07-21T00:00:00.000Z"><meta property="article:section" content="Guias de JSON"><link rel="stylesheet" href="/_astro/composers.DwigaJCt.css"></head><body class="bg-white text-slate-950 antialiased"><a href="#main-content" data-skip-to-content class="sr-only fixed left-4 top-4 z-50 rounded bg-slate-950 px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:outline-2 focus:outline-offset-2 focus:outline-slate-950">Saltar para o conteúdo</a><header class="border-b border-slate-200 bg-white" data-site-header><div class="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-3 sm:px-6 lg:px-8"><a class="inline-flex items-center gap-2.5 font-[Inter,ui-sans-serif,system-ui,sans-serif] text-xl leading-[1.6] font-extrabold tracking-[-0.7px] no-underline antialiased focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-blue-600/35 text-slate-900" href="/pt/" aria-label="4all.tools — Início" data-site-brand="true" data-site-logo="true"><span class="grid size-7 grid-cols-2 gap-0.5 rounded-lg p-[5px] bg-slate-900 shadow-[0_5px_14px_#2563eb40]" aria-hidden="true"><span class="rounded-[1.5px] opacity-95 bg-white"></span><span class="rounded-[1.5px] opacity-95 bg-white"></span><span class="rounded-[1.5px] opacity-95 bg-white"></span><span class="rounded-[1.5px] opacity-95 bg-blue-400"></span></span><span>4all<span class="text-blue-400">.tools</span></span></a><nav class="flex items-center" aria-label="Navegação principal" data-site-primary-navigation><ul class="flex flex-wrap items-center gap-4 text-sm"><li><a class="text-slate-700 underline decoration-transparent underline-offset-4 hover:text-slate-950 hover:decoration-slate-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700 font-semibold text-slate-950" href="/pt/blog/" data-site-header-link="blog" data-active="true">Blog</a></li></ul></nav><nav class="w-full min-w-0 sm:ml-auto sm:w-auto" aria-label="Idiomas" data-language-switcher><ul class="flex max-w-full flex-wrap items-center gap-x-4 gap-y-2 text-sm"><li data-locale="en" data-state="available"><a class="text-slate-700 underline decoration-transparent underline-offset-4 hover:text-slate-950 hover:decoration-slate-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/blog/development/json-guides/what-is-json/" hreflang="en" lang="en">English</a></li><li data-locale="es" data-state="available"><a class="text-slate-700 underline decoration-transparent underline-offset-4 hover:text-slate-950 hover:decoration-slate-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/es/blog/desarrollo/guias-json/que-es-json/" hreflang="es" lang="es">Español</a></li><li data-locale="pt" data-state="current"><span class="font-semibold text-slate-950" aria-current="page" lang="pt">Português<span class="sr-only"> (Idioma atual)</span></span></li><li data-locale="fr" data-state="available"><a class="text-slate-700 underline decoration-transparent underline-offset-4 hover:text-slate-950 hover:decoration-slate-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/fr/blog/developpement/guides-json/qu-est-ce-que-json/" hreflang="fr" lang="fr">Français</a></li></ul></nav></div></header><main id="main-content" class="min-h-screen bg-white" tabindex="-1"><article class="mx-auto grid w-full max-w-3xl gap-8 px-4 py-8 sm:px-6 lg:px-8" data-layout-region="article"><header class="grid gap-4" data-layout-region="article-header"><div class="mb-2"><nav aria-label="Caminho de navegação" data-breadcrumbs><ol class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-600"><li class="inline-flex items-center gap-x-2" data-kind="home" data-state="link"><a class="inline-flex min-h-6 items-center underline decoration-slate-300 underline-offset-4 hover:text-slate-950 hover:decoration-slate-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/pt/">Início</a><span aria-hidden="true">/</span></li><li class="inline-flex items-center gap-x-2" data-kind="taxonomy" data-state="link"><a class="inline-flex min-h-6 items-center underline decoration-slate-300 underline-offset-4 hover:text-slate-950 hover:decoration-slate-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/pt/blog/">Blog</a><span aria-hidden="true">/</span></li><li class="inline-flex items-center gap-x-2" data-kind="taxonomy" data-state="link"><a class="inline-flex min-h-6 items-center underline decoration-slate-300 underline-offset-4 hover:text-slate-950 hover:decoration-slate-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/pt/blog/desenvolvimento/">Desenvolvimento</a><span aria-hidden="true">/</span></li><li class="inline-flex items-center gap-x-2" data-kind="taxonomy" data-state="link"><a class="inline-flex min-h-6 items-center underline decoration-slate-300 underline-offset-4 hover:text-slate-950 hover:decoration-slate-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/pt/blog/desenvolvimento/guias-json/">Guias de JSON</a><span aria-hidden="true">/</span></li><li class="inline-flex items-center gap-x-2" data-kind="entity" data-state="current"><span class="font-medium text-slate-950" aria-current="page">O que é JSON? Guia prático da sintaxe JSON</span></li></ol></nav></div><h1 class="text-3xl font-semibold tracking-normal text-slate-950" data-template-identity="what-is-json">O que é JSON? Guia prático da sintaxe JSON</h1><p class="text-lg leading-8 text-slate-700">Entenda o que é JSON, como sua sintaxe funciona e por que ele é usado para trocar dados estruturados.</p></header><div class="grid gap-3 text-sm text-slate-600" data-layout-region="article-metadata"><div class="grid gap-2" data-template-region="article-metadata"><div><span>Publicado: </span><time datetime="2026-07-21T00:00:00.000Z">21 de julho de 2026</time></div><div><span>Categorias: </span><a href="/pt/blog/desenvolvimento/guias-json/">Guias de JSON</a></div></div></div><div class="grid gap-6" data-layout-region="article-body"><div class="grid gap-6" data-template-region="article-content"><div class="editorial-content"><h1 id="o-que-é-json-e-para-que-serve">O que é JSON e para que serve?</h1>
+<p><strong>JSON é um formato de texto usado para representar dados e compartilhá-los entre programas.</strong> A sigla significa <em>JavaScript Object Notation</em>, mas seu uso vai além de JavaScript: diferentes linguagens conseguem ler e gerar JSON. Suas regras permitem escrever informações como o nome de um produto, seu preço e uma lista de cores de maneira que outro programa consiga interpretar. Você pode encontrar esse texto em uma resposta de aplicativo, em configurações ou em um arquivo com a extensão <code>.json</code>. <a href="https://www.json.org/json-en.html">Referência do formato JSON</a>.</p>
+<h2 id="um-exemplo-simples-de-json">Um exemplo simples de JSON</h2>
+<p>Imagine a ficha de um produto. Em JSON, ela pode ser escrita assim:</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
-<span class="line"><span style="color:#79B8FF">  "name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"4all.tools"</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#79B8FF">  "active"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
-<span class="line"><span style="color:#79B8FF">  "tags"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">"json"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"ferramentas"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#79B8FF">  "produto"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Caderno"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "preço"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">49.9</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "disponível"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
 <span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
-<p>JSON tem relação com JavaScript, mas não é código JavaScript. Ele é uma
-notação de dados com uma sintaxe limitada que pode ser lida por muitas
-linguagens.</p>
-<h2 id="erros-comuns">Erros comuns</h2>
-<p>Nomes de propriedades e textos precisam de aspas duplas. O JSON padrão não
-permite comentários nem vírgulas finais. Uma vírgula ausente, uma vírgula
-extra ou uma chave sem fechamento torna o documento inválido.</p>
-<p>APIs usam JSON com frequência em requisições e respostas, e arquivos de
-configuração também se beneficiam de um formato legível por pessoas e fácil de
-analisar por programas. Use o Formatador e Validador JSON para encontrar erros de sintaxe
-antes de enviar um documento para uma API.</p>
-<h2 id="resumo">Resumo</h2>
-<p>JSON oferece uma forma portátil de trocar valores estruturados. Aprenda suas
-regras simples e valide os exemplos enquanto trabalha.</p>
-</div></div></div><aside class="grid gap-4" data-layout-region="article-related"><div class="grid gap-4" data-template-region="article-related"><h2 class="text-xl font-semibold text-slate-950">Ferramentas relacionadas</h2><ul class="grid gap-3"><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/pt/desenvolvedor/formatador-validador-json/">Formatador e Validador JSON</a><p class="text-slate-700">Formate, embeleze e valide JSON online. Detecte erros de sintaxe e torne os dados JSON mais fáceis de ler.</p></li></ul></div></aside></article></main><footer class="border-t border-slate-200 bg-white" data-site-footer><nav class="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-6 sm:px-6 lg:px-8" aria-label="Navegação do rodapé"><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/pt/sobre/" data-site-footer-link="about">Sobre</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/pt/contato/" data-site-footer-link="contact">Contato</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/pt/privacidade/" data-site-footer-link="privacy">Privacidade</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/pt/termos/" data-site-footer-link="terms">Termos</a></nav></footer></body></html><script type="module">var e=document.querySelector(`[data-skip-to-content]`),t=document.getElementById(`main-content`),n=t?.querySelector(`a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])`)??null;e?.addEventListener(`click`,()=>{t?.focus({preventScroll:!0})}),t?.addEventListener(`keydown`,e=>{e.target===t&&e.key===`Tab`&&!e.shiftKey&&n!==null&&(e.preventDefault(),n.focus())}),document.documentElement.dataset.skipToContentReady=`true`;</script>
+<p>Esse documento contém três informações: o produto se chama Caderno, seu preço é <code>49.9</code> e ele está disponível. Os dados são fictícios; o exemplo não especifica uma moeda.</p>
+<p>Cada informação aparece como um par de <strong>chave e valor</strong>. A chave funciona como a etiqueta de um campo: <code>"produto"</code> identifica a informação, e <code>"Caderno"</code> é o valor desse campo. Da mesma forma, <code>"preço"</code> é a chave cujo valor é o número <code>49.9</code>.</p>
+<p>Os sinais organizam a ficha:</p>
+<ul>
+<li>As chaves <code>{</code> e <code>}</code> delimitam um <strong>objeto</strong>, que reúne esses pares.</li>
+<li>Os dois-pontos <code>:</code> separam o nome de cada campo do seu valor.</li>
+<li>As vírgulas <code>,</code> separam os pares, sem aparecer depois do último.</li>
+<li>As aspas duplas <code>"</code> delimitam nomes de campos e valores de texto.</li>
+</ul>
+<p>O valor <code>true</code> significa verdadeiro. Aqui, ele indica disponibilidade porque esse é o significado escolhido para o campo. O nome do campo não determina seu tipo: <code>49.9</code> é um número porque foi escrito como número, sem aspas.</p>
+<h2 id="para-que-serve-json">Para que serve JSON?</h2>
+<p>JSON ajuda programas a trocar informações com uma estrutura comum. O software ainda precisa saber o que fazer com cada campo. Veja três situações:</p>
+<p><strong>Troca de dados entre aplicações.</strong> Um sistema de catálogo prepara o JSON do caderno e o envia a uma loja. A loja interpreta os campos e usa os valores para mostrar o nome, o preço e a disponibilidade na tela. Essa comunicação pode passar por uma <strong>API</strong>, uma interface que permite a programas se comunicarem. JSON é uma opção de formato para os dados dessa comunicação.</p>
+<p><strong>Configuração.</strong> Uma pessoa ou um programa escreve preferências em um arquivo JSON. Ao iniciar, uma aplicação lê os valores para escolher o idioma ou habilitar uma função. Ela precisa reconhecer os nomes dos campos e os valores permitidos.</p>
+<p><strong>Exportação e armazenamento.</strong> Uma aplicação gera texto JSON com seus registros e o grava em um arquivo. Outra aplicação pode interpretar esse arquivo para importar os dados, desde que compreenda sua estrutura.</p>
+<p>Em todos esses casos, os sistemas precisam combinar o significado dos campos. Alterar o nome de um campo esperado por uma API pode impedir seu uso, mesmo que o documento continue seguindo as regras de JSON.</p>
+<h2 id="objetos-listas-e-os-seis-tipos-de-dados">Objetos, listas e os seis tipos de dados</h2>
+<p>Podemos ampliar a mesma ficha sem mudar os três campos iniciais:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "produto"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Caderno"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "preço"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">49.9</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "disponível"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "cores"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">"azul"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"preto"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#79B8FF">  "vendedor"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "nome"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Ana"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "cidade"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Puebla"</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#79B8FF">  "observações"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">null</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>O campo <code>"cores"</code> contém um <strong>array</strong>, uma lista ordenada delimitada por colchetes <code>[ ]</code>. Seus dois itens são textos separados por vírgula. Já <code>"vendedor"</code> contém outro objeto, com os campos <code>"nome"</code> e <code>"cidade"</code>. Um objeto dentro de outro é uma estrutura <strong>aninhada</strong>.</p>
+<p>Estes são os seis tipos de valores que JSON permite:</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Exemplo da ficha</th>
+<th>Como ler</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Texto, ou <em>string</em></td>
+<td><code>"Caderno"</code></td>
+<td>Uma sequência de caracteres entre aspas.</td>
+</tr>
+<tr>
+<td>Número</td>
+<td><code>49.9</code></td>
+<td>Um valor numérico, sem aspas.</td>
+</tr>
+<tr>
+<td>Booleano</td>
+<td><code>true</code></td>
+<td>Verdadeiro ou falso: <code>true</code> ou <code>false</code>.</td>
+</tr>
+<tr>
+<td>Array, ou lista ordenada</td>
+<td><code>["azul", "preto"]</code></td>
+<td>Uma sequência de valores.</td>
+</tr>
+<tr>
+<td>Objeto</td>
+<td><code>{"nome":"Ana","cidade":"Puebla"}</code></td>
+<td>Um conjunto de pares de chave e valor.</td>
+</tr>
+<tr>
+<td>Nulo</td>
+<td><code>null</code></td>
+<td>Um valor nulo explícito.</td>
+</tr>
+</tbody>
+</table>
+<p>Neste catálogo, combinamos que <code>"observações": null</code> significa que não há observação registrada. Essa é uma convenção da aplicação: <code>null</code> não é automaticamente o mesmo que zero, texto vazio ou um campo ausente.</p>
+<p>Um documento JSON completo também pode conter apenas uma lista ou um valor simples, como <code>49.9</code>. A ordem dos itens de uma lista é significativa; o significado dos campos de um objeto não deve depender da ordem em que aparecem. Use nomes únicos dentro de cada objeto, pois chaves repetidas podem receber tratamentos diferentes entre programas. Essas regras estão descritas no <a href="https://www.rfc-editor.org/rfc/rfc8259">padrão JSON, RFC 8259</a>.</p>
+<h3 id="as-aspas-mudam-o-tipo-do-valor">As aspas mudam o tipo do valor</h3>
+<p><strong>Todos os seis documentos abaixo são JSON válido.</strong> Em cada par, a diferença é a presença de aspas no valor:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Tipo original</th>
+<th>Valor como texto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Preço</td>
+<td><code>{"preço":49.9}</code></td>
+<td><code>{"preço":"49.9"}</code></td>
+</tr>
+<tr>
+<td>Disponibilidade</td>
+<td><code>{"disponível":true}</code></td>
+<td><code>{"disponível":"true"}</code></td>
+</tr>
+<tr>
+<td>Observações</td>
+<td><code>{"observações":null}</code></td>
+<td><code>{"observações":"null"}</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>"49.9"</code> é texto com dígitos; <code>"true"</code> é texto, não um booleano; <code>"null"</code> é texto, não um valor nulo. Portanto, colocar aspas não é apenas uma mudança visual. Isso pode alterar a maneira como uma aplicação aceita ou utiliza a informação.</p>
+<h2 id="qual-é-a-diferença-entre-json-um-arquivo-e-os-dados-de-um-programa">Qual é a diferença entre JSON, um arquivo e os dados de um programa?</h2>
+<p>Você pode encontrar a mesma informação em três situações diferentes:</p>
+<table>
+<thead>
+<tr>
+<th>Conceito</th>
+<th>O que significa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Texto JSON</td>
+<td>A informação escrita conforme as regras do formato.</td>
+</tr>
+<tr>
+<td>Arquivo <code>.json</code></td>
+<td>Um arquivo que armazena esse texto.</td>
+</tr>
+<tr>
+<td>Dados utilizados por um programa</td>
+<td>Os valores obtidos ao interpretar o texto, que o programa pode consultar e modificar.</td>
+</tr>
+</tbody>
+</table>
+<p>O texto pode chegar pela rede sem existir como um arquivo no seu computador. Quando um programa o interpreta, transforma essa representação em valores que consegue utilizar. Essa leitura é chamada de <em>parsing</em>. A operação de transformar dados em uma representação textual é chamada de <strong>serialização</strong>.</p>
+<p>Apesar do nome, JSON não é um programa em JavaScript. É um formato de dados inspirado em parte da sintaxe dessa linguagem. JavaScript também permite construções, como funções, que não são valores JSON.</p>
+<p><strong>Gerar texto e salvar um arquivo são operações diferentes.</strong> Em JavaScript, por exemplo, <code>JSON.stringify()</code> pode gerar o texto. Outra operação precisa gravá-lo para criar ou atualizar um arquivo. Da mesma forma, renomear qualquer arquivo para terminar em <code>.json</code> apenas muda seu nome; o conteúdo ainda precisa seguir as regras do formato.</p>
+<h2 id="cinco-erros-comuns-de-sintaxe-em-json">Cinco erros comuns de sintaxe em JSON</h2>
+<p><strong>Sintaxe</strong> é o conjunto de regras que organiza o texto. Um programa que verifica essas regras, chamado <em>parser</em>, pode rejeitar uma entrada por causa de uma única vírgula ou aspa.</p>
+<p>Cada entrada abaixo é deliberadamente inválida e vem acompanhada de uma correção válida. As regras correspondem a JSON padrão, conforme a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">referência de JSON no MDN</a>.</p>
+<h3 id="1-nome-do-campo-sem-aspas">1. Nome do campo sem aspas</h3>
+<p>Inválido — nomes de campos precisam de aspas duplas:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>{produto:"Caderno"}</span></span></code></pre>
+<p>Correção válida:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{ </span><span style="color:#79B8FF">"produto"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Caderno"</span><span style="color:#E1E4E8"> }</span></span></code></pre>
+<h3 id="2-aspas-simples">2. Aspas simples</h3>
+<p>Inválido — aspas simples não delimitam textos em JSON:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>{'produto':'Caderno'}</span></span></code></pre>
+<p>Correção válida:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{ </span><span style="color:#79B8FF">"produto"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Caderno"</span><span style="color:#E1E4E8"> }</span></span></code></pre>
+<h3 id="3-vírgula-depois-do-último-campo">3. Vírgula depois do último campo</h3>
+<p>Inválido — a vírgula separa itens; não deve aparecer antes do fechamento:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>{"preço":49.9,}</span></span></code></pre>
+<p>Correção válida:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{ </span><span style="color:#79B8FF">"preço"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">49.9</span><span style="color:#E1E4E8"> }</span></span></code></pre>
+<h3 id="4-vírgula-ausente-entre-campos">4. Vírgula ausente entre campos</h3>
+<p>Inválido — falta separar os dois pares:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>{"produto":"Caderno" "preço":49.9}</span></span></code></pre>
+<p>Correção válida:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{ </span><span style="color:#79B8FF">"produto"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Caderno"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">"preço"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">49.9</span><span style="color:#E1E4E8"> }</span></span></code></pre>
+<h3 id="5-booleano-com-letra-maiúscula">5. Booleano com letra maiúscula</h3>
+<p>Inválido — <code>True</code> não é um valor permitido:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>{"disponível":True}</span></span></code></pre>
+<p>Correção válida:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{ </span><span style="color:#79B8FF">"disponível"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8"> }</span></span></code></pre>
+<p>Os valores especiais são escritos exatamente como <code>true</code>, <code>false</code> e <code>null</code>, sempre em minúsculas. JSON padrão também não admite comentários. Para números decimais, use ponto, como <code>49.9</code>, mesmo que você normalmente escreva números com vírgula em português.</p>
+<p>Use aspas retas no código: um editor que as substitua por aspas tipográficas pode tornar o documento inválido. Já um número entre aspas continua sendo JSON válido; ele apenas passa a ser texto.</p>
+<h2 id="como-abrir-criar-e-validar-um-arquivo-json">Como abrir, criar e validar um arquivo JSON</h2>
+<h3 id="abrir-ou-criar-o-arquivo">Abrir ou criar o arquivo</h3>
+<p>Abra o arquivo em um editor de texto ou código. Para criar um, copie o primeiro exemplo deste guia em um documento novo. Não é necessário executar o conteúdo para lê-lo ou editá-lo.</p>
+<p>Depois de modificar um valor, verifique a sintaxe. Salve o conteúdo como texto em <strong>UTF-8</strong>, com um nome como <code>produto.json</code>. Confirme o nome completo: alguns editores podem acrescentar <code>.txt</code>, resultando em <code>produto.json.txt</code>. Os acentos de <code>"preço"</code> e <code>"disponível"</code> fazem parte das chaves e devem ser preservados.</p>
+<h3 id="formatar-não-é-o-mesmo-que-validar">Formatar não é o mesmo que validar</h3>
+<table>
+<thead>
+<tr>
+<th>Operação</th>
+<th>O que ela verifica ou altera</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Formatar</td>
+<td>Organiza espaços, recuos e quebras de linha para facilitar a leitura.</td>
+</tr>
+<tr>
+<td>Validar a sintaxe</td>
+<td>Verifica se o texto segue as regras de JSON.</td>
+</tr>
+<tr>
+<td>Validar contra um esquema</td>
+<td>Verifica restrições declaradas para os dados, como campos obrigatórios e tipos esperados.</td>
+</tr>
+</tbody>
+</table>
+<p>Um <strong>esquema</strong> descreve requisitos para os dados. Por exemplo, pode exigir que o preço seja um número. Essa é uma etapa distinta da verificação de sintaxe. <a href="https://json-schema.org/understanding-json-schema/about">Introdução ao JSON Schema</a>.</p>
+<p>Reparar uma entrada também é outra operação: ela modifica o conteúdo para tentar corrigir problemas. Uma indicação de “JSON válido” não garante que os dados atendam aos requisitos da aplicação ou correspondam à realidade.</p>
+<h3 id="faça-uma-pequena-experiência">Faça uma pequena experiência</h3>
+<p>Suponha que nosso catálogo exija um preço numérico. Use o primeiro exemplo, com três campos, e acompanhe a sequência em um validador de JSON padrão:</p>
+<ol>
+<li><strong>Verifique o exemplo original.</strong> O resultado esperado é sintaxe válida.</li>
+<li><strong>Acrescente uma vírgula depois do último <code>true</code>, antes de <code>}</code>.</strong> O resultado passa a ser inválido, por causa da vírgula final.</li>
+<li><strong>Remova essa vírgula.</strong> A sintaxe volta a ser válida.</li>
+<li><strong>Coloque o preço entre aspas.</strong> A sintaxe continua válida, mas o preço agora é texto.</li>
+</ol>
+<p>Depois do quarto passo, você terá:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "produto"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Caderno"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "preço"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"49.9"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "disponível"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Um validador de sintaxe aceita esse documento. O catálogo pode rejeitá-lo porque exige um número no preço. Uma validação de esquema poderia detectar essa diferença se a restrição estivesse declarada; não presuma que todo validador ofereça essa função.</p>
+<p>Para terminar, restaure <code>49.9</code> sem aspas, valide novamente e salve <code>produto.json</code>. As mensagens de erro variam entre ferramentas, mas a sequência esperada é: válido, inválido, válido e válido com mudança de tipo.</p>
+<h2 id="opcional-ler-e-gerar-json-com-javascript">Opcional: ler e gerar JSON com JavaScript</h2>
+<p>Se você já está aprendendo programação, este exemplo mostra como ler o produto, alterar seu preço e gerar outro texto. O bloco seguinte é <strong>JavaScript</strong>, não JSON:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> textoJson</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> '{"produto":"Caderno","preço":49.9,"disponível":true}'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> dados</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">parse</span><span style="color:#E1E4E8">(textoJson);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(dados.produto); </span><span style="color:#6A737D">// Caderno</span></span>
+<span class="line"><span style="color:#E1E4E8">dados[</span><span style="color:#9ECBFF">"preço"</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 59.9</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> textoAtualizado</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">(dados, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(textoAtualizado);</span></span></code></pre>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse()</code></a> interpreta o texto. Neste caso, produz um objeto cujos campos podemos consultar ou modificar; para outros documentos, pode produzir uma lista ou um valor simples.</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify"><code>JSON.stringify()</code></a> gera texto JSON a partir de valores compatíveis. O <code>2</code> pede um recuo de dois espaços. A primeira saída é <code>Caderno</code>. Depois, aparece:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "produto"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Caderno"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "preço"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">59.9</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "disponível"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>As aspas simples externas delimitam uma string em JavaScript; elas não fazem parte do texto JSON armazenado nela. O comentário também pertence ao JavaScript. A conversão tem limitações conforme os valores utilizados, e este código apenas exibe o resultado: ele não salva um arquivo.</p>
+<h2 id="opcional-quando-usar-json-csv-ou-xml">Opcional: quando usar JSON, CSV ou XML?</h2>
+<p>O formato adequado depende da estrutura dos dados e do que o sistema que os recebe aceita:</p>
+<table>
+<thead>
+<tr>
+<th>Formato</th>
+<th>Situação em que costuma ser útil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JSON</td>
+<td>Dados organizados em campos, listas e estruturas aninhadas, como nossa ficha de produto.</td>
+</tr>
+<tr>
+<td>CSV</td>
+<td>Tabelas simples, com registros em linhas e campos separados por um delimitador.</td>
+</tr>
+<tr>
+<td>XML</td>
+<td>Informações ou documentos organizados com elementos e marcação.</td>
+</tr>
+</tbody>
+</table>
+<p>Um catálogo com uma linha por produto pode caber bem em CSV. Já a ficha com uma lista de cores e os dados agrupados do vendedor encontra uma representação direta em JSON. XML permite estruturar conteúdo com elementos e atributos. As referências de <a href="https://www.rfc-editor.org/rfc/rfc4180">CSV</a> e <a href="https://www.w3.org/TR/xml/">XML</a> detalham suas regras.</p>
+<p>Volte ao exemplo do caderno, altere um valor e verifique o resultado. Ao salvar, confira tanto a sintaxe quanto os tipos que a aplicação espera.</p>
+</div></div></div><aside class="grid gap-4" data-layout-region="article-related"><div class="grid gap-4" data-template-region="article-related"><h2 class="text-xl font-semibold text-slate-950">Ferramentas relacionadas</h2><ul class="grid gap-3"><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/pt/desenvolvedor/formatador-validador-json/">Formatador e Validador JSON</a><p class="text-slate-700">Formate, embeleze e valide JSON online. Detecte erros de sintaxe e torne os dados JSON mais fáceis de ler.</p></li><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/pt/desenvolvedor/comparador-json/">Comparador de JSON</a><p class="text-slate-700">Compare dois documentos JSON estritos pelos valores. Confira adições, remoções e alterações com diagnósticos localizados e pré-visualizações limitadas.</p></li></ul></div></aside></article></main><footer class="border-t border-slate-200 bg-white" data-site-footer><nav class="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-6 sm:px-6 lg:px-8" aria-label="Navegação do rodapé"><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/pt/sobre/" data-site-footer-link="about">Sobre</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/pt/contato/" data-site-footer-link="contact">Contato</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/pt/privacidade/" data-site-footer-link="privacy">Privacidade</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/pt/termos/" data-site-footer-link="terms">Termos</a></nav></footer></body></html><script type="module">var e=document.querySelector(`[data-skip-to-content]`),t=document.getElementById(`main-content`),n=t?.querySelector(`a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])`)??null;e?.addEventListener(`click`,()=>{t?.focus({preventScroll:!0})}),t?.addEventListener(`keydown`,e=>{e.target===t&&e.key===`Tab`&&!e.shiftKey&&n!==null&&(e.preventDefault(),n.focus())}),document.documentElement.dataset.skipToContentReady=`true`;</script>
