@@ -1,0 +1,5 @@
+<IfModule mod_headers.c>
+  <FilesMatch "^validate\.worker-[^/]+\.js$">
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+  </FilesMatch>
+</IfModule>
