@@ -56,53 +56,15 @@ et la préparation du téléchargement s’effectuent localement dans le navigat
 Pendant ces opérations, le JSON n’est pas envoyé à un serveur applicatif et
 n’est pas stocké à distance par cet outil.</p>
 <h2 id="questions-fréquentes">Questions fréquentes</h2>
-<h3 id="à-quoi-sert-un-formateur-json-">À quoi sert un formateur JSON ?</h3>
-<p>Il analyse le JSON et le sérialise avec une indentation et des retours à la
-ligne cohérents afin de rendre sa structure plus lisible.</p>
-<h3 id="comment-formater-du-json-en-ligne-">Comment formater du JSON en ligne ?</h3>
-<p>Collez ou chargez le JSON, choisissez l’indentation et sélectionnez <strong>Formater
-et valider le JSON</strong>. Si la syntaxe est valide, le texte lisible apparaît dans
-Résultat.</p>
-<h3 id="comment-valider-du-json-et-localiser-les-erreurs-de-syntaxe-">Comment valider du JSON et localiser les erreurs de syntaxe ?</h3>
-<p>Sélectionnez <strong>Valider le JSON</strong>. Une saisie invalide affiche un diagnostic et,
-si le navigateur fournit une position récupérable, sa ligne, sa colonne et son
-contexte.</p>
-<h3 id="quelle-est-la-différence-entre-formater-et-valider-du-json-">Quelle est la différence entre formater et valider du JSON ?</h3>
-<p>La validation contrôle uniquement la syntaxe. Le formatage valide aussi, puis
-produit un résultat avec l’indentation choisie.</p>
-<h3 id="puis-je-charger-un-fichier-json-">Puis-je charger un fichier .json ?</h3>
-<p>Oui. Sélectionnez ou déposez un fichier <code>.json</code> autorisé pour placer son texte
-dans Entrée et le traiter localement.</p>
-<h3 id="comment-minifier-du-json-sur-une-seule-ligne-">Comment minifier du JSON sur une seule ligne ?</h3>
-<p>Saisissez du JSON valide et sélectionnez <strong>Minifier le JSON</strong>. Résultat contient
-alors le JSON sérialisé sous forme compacte sur une ligne.</p>
-<h3 id="mon-json-est-il-envoyé-à-un-serveur-">Mon JSON est-il envoyé à un serveur ?</h3>
-<p>Non. L’outil effectue ses opérations JSON localement dans le navigateur et
-n’envoie pas le contenu à un serveur applicatif pendant son utilisation.</p>
-<h3 id="cet-outil-valide-t-il-avec-json-schema-">Cet outil valide-t-il avec JSON Schema ?</h3>
-<p>Non. Il valide uniquement la syntaxe JSON standard et n’applique aucun JSON
-Schema.</p>
+<h3 id="pourquoi-lerreur-apparaît-elle-après-la-virgule-manquante-">Pourquoi l’erreur apparaît-elle après la virgule manquante ?</h3>
+<p>La position indique l’endroit où l’analyseur n’a plus pu continuer. Si la ligne signalée semble correcte, vérifiez la fin de la propriété précédente. Dans l’exemple invalide ci-dessus, la virgule doit se trouver après <code>"4all.tools"</code>.</p>
+<h3 id="puis-je-ouvrir-un-fichier-json-">Puis-je ouvrir un fichier .json ?</h3>
+<p>Oui. Sélectionnez ou déposez un fichier <code>.json</code> dans l’outil. Son texte apparaît dans l’éditeur pour vous permettre de le vérifier avant de lancer une action.</p>
+<h3 id="une-syntaxe-valide-garantit-elle-des-données-correctes-">Une syntaxe valide garantit-elle des données correctes ?</h3>
+<p>Non. Par exemple, <code>{"age":"vingt"}</code> est du JSON valide, mais une application attendant un âge numérique peut le refuser. Utilisez un validateur JSON Schema pour vérifier des champs obligatoires, des types ou d’autres règles sur les données.</p>
 <h2 id="limites-de-lanalyse-json">Limites de l’analyse JSON</h2>
-<p>L’outil utilise son parseur et son sérialiseur JSON de produit avec des limites
-de sécurité explicites. Les très grands entiers peuvent perdre en précision
-lorsqu’ils sont représentés comme des nombres JavaScript. Les clés dupliquées
-produisent un avertissement et la dernière valeur est effective. Une nouvelle
-sérialisation peut donc modifier le texte exact et ne garantit pas de préserver
-exactement toutes les valeurs d’origine.</p>
-<p>Une signature BOM UTF-8 est rejetée et le texte collé n’est ni coupé ni
-normalisé avant l’analyse stricte. Une entrée vide ou composée uniquement
-d’espaces JSON renvoie <code>EMPTY_INPUT</code>. Le texte collé est limité à 5 242 880
-unités UTF-16 ; la profondeur, les nœuds, le travail et la sortie sont aussi
-bornés par le profil de sécurité choisi. Les fonctions de JSON5, les
-commentaires, les virgules finales, les chaînes entre apostrophes, <code>NaN</code>,
-<code>Infinity</code> et <code>undefined</code> ne font pas partie du JSON standard et sont rejetés
-en entrée. Les échappements de substituts isolés sont acceptés avec des
-avertissements ; formater ou minifier modifie les espaces et ne préserve pas la
-représentation textuelle d’origine.</p>
-<p>L’outil sépare l’état de l’opération de la validité du document. Il signale
-distinctement le dépassement numérique, les propriétés dupliquées rejetées,
-les limites dépassées, l’annulation et les échecs de copie ou de téléchargement.
-Le panneau de conseils explique également les doublons, la précision numérique,
-les unités des limites de texte et de fichier et la politique de rejet du BOM
-UTF-8.</p>
+<p>Les clés dupliquées produisent un avertissement ; <strong>le formatage et la minification conservent la dernière valeur</strong>. Par exemple, <code>{"nom":"Ana","nom":"Beto"}</code> devient <code>{"nom":"Beto"}</code>. La validation affiche l’avertissement sans réécrire l’entrée. Supprimez les doublons involontaires avant d’utiliser le résultat.</p>
+<p>Les très grands entiers et les décimaux de haute précision peuvent perdre en exactitude lorsqu’ils sont représentés par des nombres JavaScript. Le formatage et la minification modifient aussi les espaces et peuvent changer l’écriture des nombres ou des échappements. Conservez l’original si ces détails comptent pour votre usage.</p>
+<p>Le texte collé est limité à 5 242 880 unités UTF-16. Un document profond ou complexe peut atteindre les limites de traitement ou de sortie plus tôt. L’entrée vide, un BOM UTF-8 initial et les nombres hors de la plage acceptée sont refusés. JSON5, commentaires, virgules finales, chaînes entre apostrophes, <code>NaN</code>, <code>Infinity</code> et <code>undefined</code> ne sont pas acceptés comme JSON standard. Les échappements de substituts isolés sont acceptés avec un avertissement.</p>
+<p>Une opération annulée ou un téléchargement échoué ne signifie pas, à lui seul, que le JSON est invalide. Lisez le message précis avant de modifier le document.</p>
 </div></div></section><aside class="grid gap-4" data-layout-region="tool-related"><div class="grid gap-4" data-template-region="tool-related"><section class="grid gap-4" data-template-region="tool-related-guides"><h2 class="text-xl font-semibold text-slate-950">Guides associés</h2><ul class="grid gap-3"><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/fr/blog/developpement/guides-json/valider-formater-minifier-json/">Valider, formater ou minifier du JSON : que choisir ?</a><p class="text-slate-700">Choisissez entre vérifier la syntaxe, rendre le JSON plus lisible et produire un texte compact, en sachant ce que chaque action change.</p></li><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/fr/blog/developpement/guides-json/erreurs-syntaxe-json/">Erreurs de syntaxe JSON : les trouver et les corriger</a><p class="text-slate-700">Repérez une virgule, un guillemet ou une accolade incorrecte, apportez la correction minimale et vérifiez que votre JSON est valide.</p></li><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/fr/blog/developpement/guides-json/qu-est-ce-que-json/">Qu’est-ce que JSON ? Guide pratique de sa syntaxe</a><p class="text-slate-700">Découvrez ce qu’est JSON, comment fonctionne sa syntaxe et pourquoi ce format sert à échanger des données structurées.</p></li></ul></section></div></aside></div></main><footer class="border-t border-slate-200 bg-white" data-site-footer><nav class="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-6 sm:px-6 lg:px-8" aria-label="Navigation du pied de page"><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/fr/a-propos/" data-site-footer-link="about">À propos</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/fr/contact/" data-site-footer-link="contact">Contact</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/fr/confidentialite/" data-site-footer-link="privacy">Confidentialité</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/fr/conditions-utilisation/" data-site-footer-link="terms">Conditions d’utilisation</a></nav></footer></body></html><script type="module">var e=document.querySelector(`[data-skip-to-content]`),t=document.getElementById(`main-content`),n=t?.querySelector(`a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])`)??null;e?.addEventListener(`click`,()=>{t?.focus({preventScroll:!0})}),t?.addEventListener(`keydown`,e=>{e.target===t&&e.key===`Tab`&&!e.shiftKey&&n!==null&&(e.preventDefault(),n.focus())}),document.documentElement.dataset.skipToContentReady=`true`;</script>

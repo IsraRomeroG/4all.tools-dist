@@ -52,47 +52,15 @@ copied or downloaded.</p>
 preparation happen locally in your browser. During these operations, the JSON
 is not sent to an application server and is not stored remotely by this tool.</p>
 <h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
-<h3 id="what-does-a-json-formatter-do">What does a JSON formatter do?</h3>
-<p>It parses JSON and serializes it with consistent indentation and line breaks so
-the structure is easier to scan.</p>
-<h3 id="how-do-i-format-json-online">How do I format JSON online?</h3>
-<p>Paste or load JSON, choose an indentation style, and select <strong>Format &amp; Validate
-JSON</strong>. Readable JSON appears in Result when the syntax is valid.</p>
-<h3 id="how-do-i-validate-json-and-locate-syntax-errors">How do I validate JSON and locate syntax errors?</h3>
-<p>Select <strong>Validate JSON</strong>. Invalid input produces a localized diagnostic and,
-when the browser provides a recoverable position, its line, column, and
-context.</p>
-<h3 id="what-is-the-difference-between-formatting-and-validating-json">What is the difference between formatting and validating JSON?</h3>
-<p>Validation only checks syntax. Formatting also validates, then creates a
-pretty-printed result with the selected indentation.</p>
-<h3 id="can-i-upload-a-json-file">Can I upload a .json file?</h3>
-<p>Yes. Select or drag one permitted <code>.json</code> file to place its text in Input, then
-format, validate, or minify it locally.</p>
-<h3 id="how-do-i-minify-json-into-one-line">How do I minify JSON into one line?</h3>
-<p>Enter valid JSON and select <strong>Minify JSON</strong>. Result contains compact serialized
-JSON on one line.</p>
-<h3 id="is-my-json-sent-to-a-server">Is my JSON sent to a server?</h3>
-<p>No. The tool performs its JSON operations locally in the browser and does not
-send the content to an application server during use.</p>
-<h3 id="does-this-tool-validate-against-json-schema">Does this tool validate against JSON Schema?</h3>
-<p>No. It validates standard JSON syntax only and does not apply a JSON Schema.</p>
+<h3 id="why-does-the-error-point-after-the-missing-comma">Why does the error point after the missing comma?</h3>
+<p>The reported position is where the parser could no longer continue. If the marked line looks correct, check the end of the previous property. In the invalid example above, the missing comma belongs after <code>"4all.tools"</code>.</p>
+<h3 id="can-i-open-a-json-file">Can I open a .json file?</h3>
+<p>Yes. Select or drag a <code>.json</code> file into the tool. Its text goes into the editor, where you can check it before running an action.</p>
+<h3 id="does-valid-syntax-mean-my-data-is-correct">Does valid syntax mean my data is correct?</h3>
+<p>No. For example, <code>{"age":"twenty"}</code> is valid JSON, but an application expecting a numeric age may reject it. Use a JSON Schema validator when you need to check required fields, types or other data rules.</p>
 <h2 id="json-parsing-limitations">JSON Parsing Limitations</h2>
-<p>The tool uses its product JSON parser and serializer with explicit safety
-limits. Very large integers can lose precision when represented as JavaScript
-numbers. Duplicate object keys produce a warning and the last value is
-effective. Reserializing can therefore change the exact text and cannot
-guarantee exact preservation of every original value.</p>
-<p>A UTF-8 BOM is rejected, and pasted text is not trimmed or normalized before
-strict parsing. Empty or JSON-whitespace-only input returns <code>EMPTY_INPUT</code>.
-Pasted input is limited to 5,242,880 UTF-16 code units; depth, nodes, work,
-and output are also bounded by the selected safety profile. JSON5 features,
-comments, trailing commas, single-quoted strings, <code>NaN</code>, <code>Infinity</code>, and
-<code>undefined</code> are not standard JSON and are rejected as input. Isolated surrogate
-escapes are accepted with warnings, and formatting or minifying changes
-whitespace and cannot preserve the original lexical representation.</p>
-<p>The tool separates operation state from document validity. It reports numeric
-overflow, rejected duplicate properties, exceeded capabilities, cancellation,
-and clipboard or download failures with dedicated feedback. The guidance panel
-also explains duplicate-key behavior, numeric precision, units for text and
-file limits, and the rejected UTF-8 BOM policy.</p>
+<p>Duplicate keys produce a warning; <strong>the last value is kept when you format or minify</strong>. For example, <code>{"name":"Ana","name":"Beto"}</code> becomes <code>{"name":"Beto"}</code>. Validation reports the warning without rewriting the input. Remove unintended duplicates before using the result.</p>
+<p>Very large integers and precise decimals can lose precision when represented as JavaScript numbers. Formatting or minifying also changes whitespace and may change number or escape spelling. Keep the original document if those details matter.</p>
+<p>The pasted-text limit is 5,242,880 UTF-16 units. Deep or complex documents can reach processing or output limits sooner. Empty input, a leading UTF-8 BOM and numbers outside the supported range are rejected. JSON5, comments, trailing commas, single-quoted strings, <code>NaN</code>, <code>Infinity</code> and <code>undefined</code> are not accepted as standard JSON. Isolated surrogate escapes are accepted with a warning.</p>
+<p>A canceled operation or a failed download does not, by itself, mean your JSON is invalid. Read the specific message before changing the document.</p>
 </div></div></section><aside class="grid gap-4" data-layout-region="tool-related"><div class="grid gap-4" data-template-region="tool-related"><section class="grid gap-4" data-template-region="tool-related-guides"><h2 class="text-xl font-semibold text-slate-950">Related guides</h2><ul class="grid gap-3"><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/blog/development/json-guides/validate-format-minify-json/">Validate, Format, or Minify JSON: Which Should You Choose?</a><p class="text-slate-700">Choose between checking JSON syntax, making it easier to read, and producing compact text, with a clear view of what each action changes.</p></li><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/blog/development/json-guides/json-syntax-errors/">JSON Syntax Errors: How to Find and Fix Them</a><p class="text-slate-700">Find a misplaced comma, quote, or closing brace, make the smallest correction, and check that your JSON is valid again.</p></li><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/blog/development/json-guides/what-is-json/">What Is JSON?</a><p class="text-slate-700">Learn what JSON is, how its syntax works, and why developers use it to exchange structured data.</p></li></ul></section></div></aside></div></main><footer class="border-t border-slate-200 bg-white" data-site-footer><nav class="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-6 sm:px-6 lg:px-8" aria-label="Footer navigation"><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/about/" data-site-footer-link="about">About</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/contact/" data-site-footer-link="contact">Contact</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/privacy/" data-site-footer-link="privacy">Privacy</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/terms/" data-site-footer-link="terms">Terms</a></nav></footer></body></html><script type="module">var e=document.querySelector(`[data-skip-to-content]`),t=document.getElementById(`main-content`),n=t?.querySelector(`a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])`)??null;e?.addEventListener(`click`,()=>{t?.focus({preventScroll:!0})}),t?.addEventListener(`keydown`,e=>{e.target===t&&e.key===`Tab`&&!e.shiftKey&&n!==null&&(e.preventDefault(),n.focus())}),document.documentElement.dataset.skipToContentReady=`true`;</script>

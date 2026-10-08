@@ -53,51 +53,15 @@ la preparación de la descarga ocurren localmente en tu navegador. Durante esas
 operaciones, el JSON no se envía a un servidor de la aplicación ni se almacena
 de forma remota mediante esta herramienta.</p>
 <h2 id="preguntas-frecuentes">Preguntas frecuentes</h2>
-<h3 id="qué-hace-un-formateador-json">¿Qué hace un formateador JSON?</h3>
-<p>Analiza JSON y lo serializa con sangría y saltos de línea coherentes para que su
-estructura sea más fácil de leer.</p>
-<h3 id="cómo-puedo-formatear-json-online">¿Cómo puedo formatear JSON online?</h3>
-<p>Pega o carga JSON, elige la sangría y selecciona <strong>Formatear y validar JSON</strong>.
-Si la sintaxis es válida, el texto legible aparece en Resultado.</p>
-<h3 id="cómo-valido-json-y-localizo-errores-de-sintaxis">¿Cómo valido JSON y localizo errores de sintaxis?</h3>
-<p>Selecciona <strong>Validar JSON</strong>. Una entrada inválida muestra un diagnóstico y,
-cuando el navegador proporciona una posición recuperable, su línea, columna y
-contexto.</p>
-<h3 id="cuál-es-la-diferencia-entre-formatear-y-validar-json">¿Cuál es la diferencia entre formatear y validar JSON?</h3>
-<p>Validar solo comprueba la sintaxis. Formatear también valida y después genera
-un resultado con la sangría elegida.</p>
-<h3 id="puedo-cargar-un-archivo-json">¿Puedo cargar un archivo .json?</h3>
-<p>Sí. Selecciona o arrastra un archivo <code>.json</code> permitido para llevar su texto a
-Entrada y procesarlo localmente.</p>
-<h3 id="cómo-minifico-json-en-una-sola-línea">¿Cómo minifico JSON en una sola línea?</h3>
-<p>Introduce JSON válido y selecciona <strong>Minificar JSON</strong>. Resultado contendrá el
-JSON serializado de forma compacta en una línea.</p>
-<h3 id="mi-json-se-envía-a-un-servidor">¿Mi JSON se envía a un servidor?</h3>
-<p>No. La herramienta realiza sus operaciones JSON localmente en el navegador y
-no envía el contenido a un servidor de la aplicación durante el uso.</p>
-<h3 id="esta-herramienta-valida-con-json-schema">¿Esta herramienta valida con JSON Schema?</h3>
-<p>No. Solo valida la sintaxis JSON estándar y no aplica un JSON Schema.</p>
+<h3 id="por-qué-el-error-aparece-después-de-la-coma-que-falta">¿Por qué el error aparece después de la coma que falta?</h3>
+<p>La posición indica dónde el analizador ya no pudo continuar. Si la línea señalada parece correcta, revisa el final de la propiedad anterior. En el ejemplo inválido de arriba, la coma debe ir después de <code>"4all.tools"</code>.</p>
+<h3 id="puedo-abrir-un-archivo-json">¿Puedo abrir un archivo .json?</h3>
+<p>Sí. Selecciona o arrastra un archivo <code>.json</code> a la herramienta. Su texto aparece en el editor, donde puedes revisarlo antes de ejecutar una acción.</p>
+<h3 id="una-sintaxis-válida-significa-que-mis-datos-son-correctos">¿Una sintaxis válida significa que mis datos son correctos?</h3>
+<p>No. Por ejemplo, <code>{"edad":"veinte"}</code> es JSON válido, pero una aplicación que espere una edad numérica puede rechazarlo. Usa un validador de JSON Schema si necesitas comprobar campos obligatorios, tipos u otras reglas sobre los datos.</p>
 <h2 id="limitaciones-del-análisis-json">Limitaciones del análisis JSON</h2>
-<p>La herramienta usa su analizador y serializador JSON de producto con límites de
-seguridad explícitos. Los enteros muy grandes pueden perder precisión al
-representarse como números de JavaScript. Las claves duplicadas producen una
-advertencia y el último valor es efectivo. Por ello, serializar de nuevo puede
-cambiar el texto exacto y no garantiza conservar exactamente todos los valores
-originales.</p>
-<p>Se rechaza una firma BOM UTF-8 y el texto pegado no se recorta ni normaliza
-antes del análisis estricto. Una entrada vacía o formada solo por espacios JSON
-devuelve <code>EMPTY_INPUT</code>. El texto pegado está limitado a 5.242.880 unidades
-UTF-16; la profundidad, los nodos, el trabajo y la salida también están
-limitados por el perfil de seguridad seleccionado. Las funciones de JSON5, los
-comentarios, las comas finales, las cadenas con comillas simples, <code>NaN</code>,
-<code>Infinity</code> y <code>undefined</code> no pertenecen al JSON estándar y se rechazan como
-entrada. Los escapes de sustitutos aislados se aceptan con advertencias, y
-formatear o minificar cambia los espacios y no conserva la representación
-textual original.</p>
-<p>La herramienta separa el estado de la operación de la validez del documento.
-Informa por separado del desbordamiento numérico, las propiedades duplicadas
-rechazadas, los límites superados, la cancelación y los fallos de copia o
-descarga. El panel de ayuda también explica los duplicados, la precisión
-numérica, las unidades de los límites de texto y archivo y la política de BOM
-UTF-8 rechazado.</p>
+<p>Las claves duplicadas producen una advertencia; <strong>al formatear o minificar se conserva el último valor</strong>. Por ejemplo, <code>{"nombre":"Ana","nombre":"Beto"}</code> pasa a ser <code>{"nombre":"Beto"}</code>. La validación muestra el aviso sin reescribir la entrada. Elimina los duplicados involuntarios antes de usar el resultado.</p>
+<p>Los enteros muy grandes y los decimales de alta precisión pueden perder exactitud al representarse como números de JavaScript. Formatear o minificar también cambia los espacios y puede cambiar la escritura de números o escapes. Conserva el original si esos detalles son importantes para tu caso.</p>
+<p>El texto pegado admite hasta 5.242.880 unidades UTF-16. Un documento profundo o complejo puede alcanzar antes los límites de procesamiento o salida. Se rechazan la entrada vacía, un BOM UTF-8 inicial y los números fuera del rango admitido. JSON5, comentarios, comas finales, cadenas con comillas simples, <code>NaN</code>, <code>Infinity</code> y <code>undefined</code> no se aceptan como JSON estándar. Los escapes de sustitutos aislados se admiten con aviso.</p>
+<p>Cancelar una operación o tener un fallo de descarga no significa, por sí solo, que el JSON sea inválido. Lee el mensaje concreto antes de modificar el documento.</p>
 </div></div></section><aside class="grid gap-4" data-layout-region="tool-related"><div class="grid gap-4" data-template-region="tool-related"><section class="grid gap-4" data-template-region="tool-related-guides"><h2 class="text-xl font-semibold text-slate-950">Guías relacionadas</h2><ul class="grid gap-3"><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/es/blog/desarrollo/guias-json/validar-formatear-minificar-json/">Validar, formatear o minificar JSON: qué acción elegir</a><p class="text-slate-700">Elige entre comprobar la sintaxis, hacer el JSON más legible o generar texto compacto, y conoce qué cambia en cada caso.</p></li><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/es/blog/desarrollo/guias-json/errores-sintaxis-json/">Errores de sintaxis JSON: cómo encontrarlos y corregirlos</a><p class="text-slate-700">Localiza una coma, comilla o llave incorrecta, aplica la corrección mínima y comprueba que tu JSON vuelve a ser válido.</p></li><li class="grid gap-1"><a class="font-semibold text-slate-950 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700" href="/es/blog/desarrollo/guias-json/que-es-json/">¿Qué es JSON? Guía práctica de su sintaxis</a><p class="text-slate-700">Aprende qué es JSON, cómo funciona su sintaxis y por qué se utiliza para intercambiar datos estructurados.</p></li></ul></section></div></aside></div></main><footer class="border-t border-slate-200 bg-white" data-site-footer><nav class="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-6 sm:px-6 lg:px-8" aria-label="Navegación del pie de página"><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/es/acerca-de/" data-site-footer-link="about">Acerca de</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/es/contacto/" data-site-footer-link="contact">Contacto</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/es/privacidad/" data-site-footer-link="privacy">Privacidad</a><a class="text-sm text-slate-700 underline underline-offset-2 hover:text-slate-950" href="/es/terminos/" data-site-footer-link="terms">Términos</a></nav></footer></body></html><script type="module">var e=document.querySelector(`[data-skip-to-content]`),t=document.getElementById(`main-content`),n=t?.querySelector(`a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])`)??null;e?.addEventListener(`click`,()=>{t?.focus({preventScroll:!0})}),t?.addEventListener(`keydown`,e=>{e.target===t&&e.key===`Tab`&&!e.shiftKey&&n!==null&&(e.preventDefault(),n.focus())}),document.documentElement.dataset.skipToContentReady=`true`;</script>
